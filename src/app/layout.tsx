@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, Inter, Geist } from "next/font/google";
 
 import "./globals.css";
 
@@ -11,6 +11,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { IntroSequence } from "@/components/intro/IntroSequence";
 import { CursorBinary } from "@/components/ui/cursor-binary";
 import { profile, sections, settings } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
 // Self-hosted at build time by next/font, with font-display: swap and no layout shift.
 const display = Fraunces({
@@ -20,11 +21,7 @@ const display = Fraunces({
   axes: ["SOFT", "opsz"],
 });
 
-const sans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   metadataBase: new URL(settings.siteUrl),
@@ -57,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${display.variable} ${sans.variable}`}
+      className={cn(display.variable, "font-sans", geist.variable)}
       style={
         {
           "--accent": settings.theme.accent,

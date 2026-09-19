@@ -1,3 +1,5 @@
+export { cn } from "cn";
+
 import {
   Code2,
   Github,
@@ -10,11 +12,6 @@ import {
   Youtube,
   type LucideIcon,
 } from "lucide-react";
-
-/** Minimal classnames joiner — no dependency needed. */
-export function cn(...parts: Array<string | false | null | undefined>): string {
-  return parts.filter(Boolean).join(" ");
-}
 
 const ICONS: Record<string, LucideIcon> = {
   github: Github,
