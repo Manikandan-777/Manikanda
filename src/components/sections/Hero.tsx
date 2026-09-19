@@ -4,6 +4,7 @@ import Image from "next/image";
 import { SocialLinks } from "@/components/SocialLinks";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { profile, socials } from "@/lib/content";
+import { assetUrl } from "@/lib/utils";
 
 export function Hero() {
   const hasPhoto = Boolean(profile.photo);
@@ -45,7 +46,7 @@ export function Hero() {
             </ShimmerButton>
             {profile.resumeUrl && (
               <a
-                href={profile.resumeUrl}
+                href={assetUrl(profile.resumeUrl)}
                 download
                 className="inline-flex items-center gap-2 rounded-full border border-fg px-6 py-3 text-sm font-medium transition-colors hover:bg-fg hover:text-bg"
               >
@@ -72,7 +73,7 @@ export function Hero() {
             {/* Full 408×612 cut-out, shown whole (no crop), lightly scaled up. */}
             <div className="relative aspect-[2/3] w-full">
               <Image
-                src={profile.photo}
+                src={assetUrl(profile.photo)}
                 alt={`${profile.name}, ${profile.title}`}
                 fill
                 priority

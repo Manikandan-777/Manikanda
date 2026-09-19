@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { Reveal } from "@/components/Reveal";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { getProject, hasProjectDetail, projects } from "@/lib/content";
+import { assetUrl } from "@/lib/utils";
 
 type Params = { slug: string };
 
@@ -68,7 +69,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
         {project.image && (
           <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-2xl border border-border bg-surface-2">
             <Image
-              src={project.image}
+              src={assetUrl(project.image)}
               alt={`${project.title} preview`}
               fill
               sizes="(max-width: 768px) 100vw, 768px"

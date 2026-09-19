@@ -13,7 +13,7 @@ import {
   SiUdemy,
 } from "react-icons/si";
 
-import { cn } from "@/lib/utils";
+import { assetUrl, cn } from "@/lib/utils";
 import type { Certificate } from "@/lib/schema";
 
 /* ------------------------------- issuer brand ------------------------------ */
@@ -99,7 +99,7 @@ function resolveBrand(cert: Certificate, brokenLogos: Set<string>): { brand: Bra
 
   // 1. an official logo asset from certificates.json (skipped if it failed to load)
   if (cert.logo && !brokenLogos.has(cert.logo)) {
-    return { brand: { kind: "img", src: cert.logo, name: head }, sub };
+    return { brand: { kind: "img", src: assetUrl(cert.logo), name: head }, sub };
   }
   // 2. a real brand mark bundled in react-icons / Simple Icons
   const hit = ICON_BRANDS.find((b) => b.match.test(cert.issuer));
@@ -299,7 +299,7 @@ export function CertificateStack({ items }: { items: Certificate[] }) {
               </span>
               {cert.credentialUrl ? (
                 <a
-                  href={cert.credentialUrl}
+                  href={assetUrl(cert.credentialUrl)}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Open credential for ${cert.title}`}

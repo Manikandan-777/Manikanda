@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { hasProjectDetail, projectHref } from "@/lib/content";
-import { cn } from "@/lib/utils";
+import { assetUrl, cn } from "@/lib/utils";
 import type { Project } from "@/lib/schema";
 
 export function ProjectCard({
@@ -26,7 +26,7 @@ export function ProjectCard({
       {project.image ? (
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-2">
           <Image
-            src={project.image}
+            src={assetUrl(project.image)}
             alt={`${project.title} preview`}
             fill
             sizes={featured ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}

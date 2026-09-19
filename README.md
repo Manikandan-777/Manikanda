@@ -60,8 +60,7 @@ The portfolio uses a **data-driven content architecture**, where most website co
 
 ### Deployment
 
-* **Netlify**
-* **GitHub**
+* **GitHub Pages** (via GitHub Actions)
 
 ---
 
@@ -128,7 +127,7 @@ manikandan-portfolio/
 ├── scripts/
 │   └── validate-content.ts
 │
-├── netlify.toml
+├── .github/workflows/deploy.yml
 ├── package.json
 └── README.md
 ```
@@ -419,31 +418,36 @@ The portfolio can still be maintained manually without using the CMS.
 
 ## 🚀 Deployment
 
-The project is configured for deployment on **Netlify**.
+The project is configured for automated deployment to **GitHub Pages** via GitHub Actions.
 
 The repository includes:
 
 ```text
-netlify.toml
+.github/workflows/deploy.yml
 ```
 
-### Deploy
+### Enable GitHub Pages in your Repository
 
-1. Push the repository to GitHub.
-2. Open Netlify.
-3. Import the GitHub repository.
-4. Deploy the project.
-5. Configure your production URL in:
+1. Go to your repository on GitHub (`Manikandan-777/Manikanda`).
+2. Navigate to **Settings** → **Pages**.
+3. Under **Build and deployment** > **Source**, select **GitHub Actions**.
+4. Push any commit to the `main` branch: the GitHub Actions workflow will automatically build the static Next.js site and deploy it to GitHub Pages at:
+
+```text
+https://manikandan-777.github.io/Manikanda/
+```
+
+### Production URL Configuration
+
+The production URL is configured in:
 
 ```text
 content/settings.json
 ```
 
-Set:
-
 ```json
 {
-  "siteUrl": "https://your-domain.com"
+  "siteUrl": "https://manikandan-777.github.io/Manikanda"
 }
 ```
 

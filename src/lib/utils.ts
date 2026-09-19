@@ -37,3 +37,21 @@ const ICONS: Record<string, LucideIcon> = {
 export function socialIcon(name: string): LucideIcon {
   return ICONS[name.toLowerCase()] ?? LinkIcon;
 }
+
+/** Prepend Next.js basePath when deployed under a repository subpath (e.g., GitHub Pages). */
+export function assetUrl(path: string | undefined | null): string {
+  if (!path) return "";
+  if (
+    path.startsWith("http://") ||
+    path.startsWith("https://") ||
+    path.startsWith("data:") ||
+    path.startsWith("mailto:") ||
+    path.startsWith("tel:")
+  ) {
+    return path;
+  }
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const cleanBase = basePath.replace(/\/$/, "");
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  return `${cleanBase}${cleanPath}`;
+}

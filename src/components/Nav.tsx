@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { cn } from "@/lib/utils";
+import { assetUrl, cn } from "@/lib/utils";
 import type { SectionConfig } from "@/lib/schema";
 
 export function Nav({
@@ -74,7 +74,7 @@ export function Nav({
         >
           <span className="relative block h-8 w-8 overflow-hidden rounded-full ring-1 ring-border">
             <Image
-              src="/images/avatar.jpg"
+              src={assetUrl("/images/avatar.jpg")}
               alt={name}
               fill
               sizes="32px"
@@ -107,7 +107,7 @@ export function Nav({
         <div className="flex items-center gap-2">
           {resumeUrl && (
             <a
-              href={resumeUrl}
+              href={assetUrl(resumeUrl)}
               className="hidden rounded-full border border-fg px-4 py-1.5 text-sm transition-colors hover:bg-fg hover:text-bg sm:inline-block"
               download
             >
@@ -147,7 +147,7 @@ export function Nav({
             {resumeUrl && (
               <li>
                 <a
-                  href={resumeUrl}
+                  href={assetUrl(resumeUrl)}
                   download
                   onClick={() => setOpen(false)}
                   className="block py-4 font-display text-2xl text-fg"

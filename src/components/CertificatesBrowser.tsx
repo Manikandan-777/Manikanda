@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 
 import { SegmentedTabs } from "@/components/ui/segmented-tabs";
 import type { Certificate } from "@/lib/schema";
+import { assetUrl } from "@/lib/utils";
 
 const INITIAL_VISIBLE = 6;
 
@@ -58,7 +59,7 @@ export function CertificatesBrowser({
               {c.date && <span>{c.date}</span>}
               {c.credentialUrl && (
                 <a
-                  href={c.credentialUrl}
+                  href={assetUrl(c.credentialUrl)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-0.5 text-accent-ink link-underline"
