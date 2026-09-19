@@ -4,61 +4,84 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 
 /**
- * Cinematic startup overlay: black → a stylised MacBook rises in → screen powers
- * on → a cursive "hello" writes itself on the screen, left to right → the screen
- * zooms to fill the viewport and dissolves, revealing the portfolio.
+ * Intro overlay: black screen → a clean cursive "hello" writes itself →
+ * dissolves to reveal the portfolio.
  *
- * Runs once per session (sessionStorage). `prefers-reduced-motion` gets a quick
- * one-second draw. A subtle "Skip intro" control (or Esc) ends it immediately.
+ * Runs once per session (sessionStorage). `prefers-reduced-motion` gets a
+ * quick one-second draw. A "Skip intro" button (or Esc key) ends it immediately.
  */
 const KEY = "mp-intro@v1";
 
-/** A single continuous cursive stroke spelling "hello", drawn L→R. */
+/**
+ * Clean, clearly legible cursive "hello" SVG path.
+ * Each letter is drawn as a natural pen stroke on a 420×180 canvas.
+ *
+ *  h  — tall descender stem, arch right into bowl
+ *  e  — single loop (like a cursive e)
+ *  l  — tall straight ascender with a small loop foot
+ *  l  — same as first l
+ *  o  — closed oval
+ */
 const HELLO_PATH =
-  "M40,150 C44,70 52,30 68,34 C80,37 74,110 72,150 C72,118 86,92 106,94 " +
-  "C122,96 126,124 124,150 C124,128 136,96 156,100 C172,103 174,124 156,130 " +
-  "C142,134 130,122 134,108 C132,140 150,154 172,150 C184,148 192,140 200,132 " +
-  "C214,104 226,34 244,36 C256,38 248,116 246,150 C246,122 258,44 278,38 " +
-  "C290,35 282,118 282,150 C282,126 300,100 320,106 C338,111 342,138 324,148 " +
-  "C308,156 286,150 282,136 C300,152 326,152 348,144";
+  // h: tall stem
+  "M 28,155 C 28,130 28,90 28,42 " +
+  // h: arch from mid-stem down into bowl
+  "C 28,42 28,80 38,94 C 48,108 62,108 70,100 C 78,92 78,110 78,155 " +
+  // e: lead-in from h, open-top loop
+  "C 78,145 90,120 104,120 C 118,120 126,132 120,144 " +
+  "C 114,156 98,158 90,148 C 82,138 96,128 112,130 " +
+  // l (first): tall ascender + foot
+  "C 120,131 130,131 138,132 C 140,110 140,72 140,42 C 140,130 142,148 146,155 " +
+  // l (second): tall ascender + foot
+  "C 150,131 160,131 168,132 C 170,110 170,72 170,42 C 170,130 172,148 176,155 " +
+  // o: oval shape
+  "C 182,150 192,148 204,148 C 218,148 230,140 234,128 " +
+  "C 238,116 232,104 218,100 C 204,96 192,104 188,118 " +
+  "C 184,132 190,148 202,152 C 208,154 216,154 226,150";
 
-type Phase = "black" | "macbook" | "power" | "hello" | "zoom" | "done";
+type Phase = "black" | "hello" | "zoom" | "done";
 
 function HelloScript({ duration }: { duration: number }) {
   return (
-    <svg viewBox="0 0 390 180" className="w-[64%] max-w-[560px] overflow-visible">
+    <svg
+      viewBox="0 0 270 200"
+      className="w-[72vw] max-w-[480px] overflow-visible"
+      aria-label="hello"
+    >
       <defs>
         <filter id="hello-neon" x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur stdDeviation="4.5" result="b" />
+          <feGaussianBlur stdDeviation="4" result="b" />
           <feMerge>
             <feMergeNode in="b" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
       </defs>
-      {/* faint outer glow line */}
+
+      {/* outer glow */}
       <path
         d={HELLO_PATH}
         fill="none"
-        stroke="rgba(169,232,198,0.28)"
-        strokeWidth={20}
+        stroke="rgba(180,240,210,0.20)"
+        strokeWidth={22}
         strokeLinecap="round"
         strokeLinejoin="round"
         filter="url(#hello-neon)"
       />
-      {/* the drawn stroke */}
+
+      {/* animated drawn stroke */}
       <motion.path
         d={HELLO_PATH}
         fill="none"
-        stroke="#bff0d4"
-        strokeWidth={10}
+        stroke="#c8f0d8"
+        strokeWidth={8}
         strokeLinecap="round"
         strokeLinejoin="round"
-        initial={{ pathLength: 0, opacity: 0.6 }}
+        initial={{ pathLength: 0, opacity: 0.5 }}
         animate={{ pathLength: 1, opacity: 1 }}
         transition={{
           pathLength: { duration, ease: [0.25, 0.6, 0.3, 1] },
-          opacity: { duration: 0.25 },
+          opacity: { duration: 0.3 },
         }}
       />
     </svg>
@@ -80,8 +103,7 @@ export function IntroSequence() {
   const [phase, setPhase] = useState<Phase>("black");
   const [exiting, setExiting] = useState(false);
 
-  // Render nothing until after hydration so server (null) and first client
-  // render (null) match — the pre-hydration .intro-lock cover bridges the gap.
+  // Avoid hydration mismatch: only render after mount.
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -101,8 +123,6 @@ export function IntroSequence() {
     }, 420);
   }, []);
 
-  // Drive the sequence. (The sessionStorage flag is set in finish(), not here —
-  // writing it on mount makes a StrictMode remount read it back and skip.)
   useEffect(() => {
     if (!run) {
       document.documentElement.classList.remove("intro-lock");
@@ -118,11 +138,9 @@ export function IntroSequence() {
       setPhase("hello");
       at(1100, finish);
     } else {
-      at(600, () => setPhase("macbook"));
-      at(1650, () => setPhase("power"));
-      at(2600, () => setPhase("hello"));
-      at(5300, () => setPhase("zoom"));
-      at(6900, finish);
+      at(350, () => setPhase("hello"));
+      at(3400, () => setPhase("zoom"));
+      at(4800, finish);
     }
 
     return () => {
@@ -131,7 +149,7 @@ export function IntroSequence() {
     };
   }, [run, reduced, finish]);
 
-  // Lock scroll while the overlay is up.
+  // Lock scroll while the overlay is active.
   useEffect(() => {
     if (!run || phase === "done") return;
     const prev = document.body.style.overflow;
@@ -153,10 +171,8 @@ export function IntroSequence() {
 
   if (!mounted || !run || phase === "done") return null;
 
-  const lit = phase === "power" || phase === "hello" || phase === "zoom";
   const showHello = phase === "hello" || phase === "zoom";
   const zooming = phase === "zoom";
-  const visible = phase !== "black";
 
   /* ------------------------------ reduced motion ----------------------------- */
   if (reduced) {
@@ -174,116 +190,46 @@ export function IntroSequence() {
   /* --------------------------------- full run ------------------------------ */
   return (
     <motion.div
-      className="fixed inset-0 z-[100] overflow-hidden"
-      animate={{ opacity: exiting ? 0 : 1 }}
-      transition={{ duration: 0.42 }}
+      className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-black"
+      animate={{
+        opacity: exiting ? 0 : 1,
+        scale: zooming ? 1.06 : 1,
+      }}
+      transition={{
+        opacity: { duration: 0.45 },
+        scale: { duration: 1.4, ease: [0.6, 0, 0.22, 1] },
+      }}
       aria-label="Intro animation"
     >
-      {/* black stage — dissolves during the zoom */}
-      <motion.div
-        className="absolute inset-0 bg-black"
-        animate={{ opacity: zooming ? 0 : 1 }}
-        transition={{ duration: 0.8, delay: zooming ? 0.75 : 0 }}
-      />
+      {/* subtle green ambient glow */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(70% 60% at 50% 42%, rgba(18,161,80,0.05), transparent 60%)," +
-            "radial-gradient(120% 100% at 50% 120%, rgba(0,0,0,0.6), transparent 55%)",
-          opacity: zooming ? 0 : 1,
-          transition: "opacity .6s ease",
+            "radial-gradient(50% 40% at 50% 50%, rgba(18,161,80,0.07), transparent 70%)",
+          opacity: showHello ? 1 : 0,
+          transition: "opacity 1s ease",
         }}
       />
 
-      {/* ------------------------------- MacBook ------------------------------ */}
-      <div className="absolute inset-0 grid place-items-center [perspective:1600px]">
-        <motion.div
-          className="relative w-[80vw] max-w-[860px] sm:w-[64vw] md:w-[58vw] [transform-style:preserve-3d]"
-          style={{ transformOrigin: "50% 34%" }}
-          initial={{ opacity: 0, scale: 0.86, y: 26, rotateX: 13 }}
-          animate={
-            zooming
-              ? { scale: 15, opacity: [1, 1, 0], rotateX: 0, y: "-4%" }
-              : visible
-                ? { opacity: 1, scale: 1, y: 0, rotateX: 6 }
-                : { opacity: 0, scale: 0.86, y: 26, rotateX: 13 }
-          }
-          transition={
-            zooming
-              ? {
-                  duration: 1.6,
-                  ease: [0.6, 0, 0.22, 1],
-                  opacity: { duration: 1.6, times: [0, 0.5, 0.92] },
-                }
-              : { duration: 1.05, ease: [0.16, 1, 0.3, 1] }
-          }
-        >
-          {/* lid */}
-          <div className="relative aspect-[16/10.6] w-full rounded-[1.5rem] bg-gradient-to-b from-[#43464c] via-[#292b30] to-[#1b1d21] p-[1.6%] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.8)] ring-1 ring-white/10">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-x-6 top-0 h-px rounded-full bg-white/25"
-            />
-            <div className="relative h-full w-full rounded-[1.05rem] bg-[#050506] p-[1.7%] ring-1 ring-black/60">
-              <div
-                aria-hidden
-                className="absolute left-1/2 top-[1.1%] h-[3px] w-[3px] -translate-x-1/2 rounded-full bg-[#101012] ring-1 ring-white/10"
-              />
-              {/* screen */}
-              <motion.div
-                className="relative grid h-full w-full place-items-center overflow-hidden rounded-[0.7rem]"
-                animate={{ backgroundColor: lit ? "#060809" : "#000000" }}
-                transition={{ duration: 0.9 }}
-              >
-                <motion.div
-                  aria-hidden
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "radial-gradient(60% 55% at 50% 45%, rgba(255,255,255,0.16), transparent 70%)",
-                  }}
-                  animate={{
-                    opacity: phase === "power" ? [0, 0.9, 0.14] : lit ? 0.12 : 0,
-                  }}
-                  transition={{ duration: 1.0, times: [0, 0.35, 1] }}
-                />
-
-                {showHello && <HelloScript duration={2.3} />}
-
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(115deg, rgba(255,255,255,0.06) 0%, transparent 32%, transparent 100%)",
-                  }}
-                />
-              </motion.div>
-            </div>
-          </div>
-
-          {/* hinge + deck edge */}
-          <div className="relative mx-auto -mt-px h-[1.6%] w-[104%] -translate-x-[2%] rounded-b-[0.5rem] bg-gradient-to-b from-[#3c3f45] to-[#202226]">
-            <div className="absolute left-1/2 top-0 h-full w-[14%] -translate-x-1/2 rounded-b-md bg-[#141518]" />
-          </div>
-          <div className="mx-auto h-[0.9%] w-[86%] rounded-b-[0.4rem] bg-gradient-to-b from-[#191a1d] to-transparent" />
-
-          {/* reflection */}
-          <div
-            aria-hidden
-            className="mx-auto mt-2 h-[26%] w-[92%] scale-y-[-1] rounded-[1.2rem] bg-gradient-to-b from-[#2a2c31] to-transparent opacity-20 blur-[2px]"
-            style={{ maskImage: "linear-gradient(black, transparent 70%)" }}
-          />
-        </motion.div>
-      </div>
+      {/* hello text — fades in cleanly */}
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{
+          opacity: showHello ? 1 : 0,
+          y: showHello ? 0 : 8,
+        }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {showHello && <HelloScript duration={2.2} />}
+      </motion.div>
 
       {!exiting && (
         <button
           type="button"
           onClick={finish}
-          className="fixed bottom-6 right-6 z-[101] font-mono text-[10px] uppercase tracking-[0.28em] text-white/35 transition-colors hover:text-white/80"
+          className="fixed bottom-6 right-6 z-[101] font-mono text-[10px] uppercase tracking-[0.28em] text-white/30 transition-colors hover:text-white/70"
         >
           Skip intro
         </button>
