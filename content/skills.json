@@ -1,0 +1,89 @@
+{
+  "intro": {
+    "eyebrow": "Toolkit",
+    "title": "Skills that turn data into decisions.",
+    "blurb": "A working blend of programming, data, and visualization tools I reach for to take a problem from raw data to a result worth sharing."
+  },
+  "groups": [
+    {
+      "name": "Programming",
+      "order": 1,
+      "visible": true,
+      "items": [
+        { "name": "Python", "level": "core" },
+        { "name": "C", "level": "working" },
+        { "name": "R", "level": "working" },
+        { "name": "Java", "level": "working" }
+      ]
+    },
+    {
+      "name": "Data Science",
+      "order": 2,
+      "visible": true,
+      "items": [
+        { "name": "Data Cleaning" },
+        { "name": "Exploratory Data Analysis" },
+        { "name": "Machine Learning Fundamentals" },
+        { "name": "NumPy" },
+        { "name": "Pandas" }
+      ]
+    },
+    {
+      "name": "Visualization",
+      "order": 3,
+      "visible": true,
+      "items": [
+        { "name": "Matplotlib" },
+        { "name": "Seaborn" },
+        { "name": "Tableau" },
+        { "name": "Power BI" }
+      ]
+    },
+    {
+      "name": "Tools",
+      "order": 4,
+      "visible": true,
+      "items": [
+        { "name": "Jupyter Notebook" },
+        { "name": "Google Colab" },
+        { "name": "Git" },
+        { "name": "GitHub" },
+        { "name": "MS Office" }
+      ]
+    },
+    {
+      "name": "Research",
+      "order": 5,
+      "visible": true,
+      "items": [
+        { "name": "Literature Review" },
+        { "name": "Data Collection and Analysis" },
+        { "name": "Problem Identification" },
+        { "name": "Experimental Design" }
+      ]
+    },
+    {
+      "name": "Other",
+      "order": 6,
+      "visible": true,
+      "items": [
+        { "name": "Technical documentation" },
+        { "name": "Basic web development" },
+        { "name": "Debugging and code validation" },
+        { "name": "Unit testing" }
+      ]
+    },
+    {
+      "name": "Soft Skills",
+      "order": 7,
+      "visible": true,
+      "items": [
+        { "name": "Communication" },
+        { "name": "Teamwork" },
+        { "name": "Analytical problem solving" },
+        { "name": "Time management" },
+        { "name": "Adaptability" }
+      ]
+    }
+  ]
+}

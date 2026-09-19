@@ -1,0 +1,32 @@
+{
+  "social": [
+    {
+      "label": "Portfolio",
+      "url": "https://manikandan-aids.netlify.app",
+      "icon": "globe",
+      "order": 1,
+      "visible": true
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/Manikandan-777",
+      "icon": "github",
+      "order": 2,
+      "visible": true
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/manikandan-p-695516343/",
+      "icon": "linkedin",
+      "order": 3,
+      "visible": true
+    },
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/u/Manikandan089",
+      "icon": "code",
+      "order": 4,
+      "visible": true
+    }
+  ]
+}

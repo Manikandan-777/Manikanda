@@ -1,0 +1,58 @@
+{
+  "achievements": [
+    {
+      "title": "1st Prize — Drawing Competition, World Environment Day 2025",
+      "org": "Dr. Mahalingam College of Engineering and Technology",
+      "date": "Jun 2025",
+      "detail": "Won first place in the institute-level drawing competition held for World Environment Day.",
+      "certificateUrl": "/certificates/drawing-competition-1st-prize.pdf",
+      "order": 1,
+      "visible": true
+    },
+    {
+      "title": "Srinivasa Ramanujan Mathematical Competition",
+      "org": "ISTE Tamil Nadu",
+      "date": "Nov 2024",
+      "detail": "Participated at both State and National levels.",
+      "certificateUrl": "/certificates/ramanujan-maths-competition.pdf",
+      "order": 2,
+      "visible": true
+    },
+    {
+      "title": "TERRAQUEST 2K25 — 24-hour National Hackathon",
+      "org": "Sri Sairam College of Engineering, Bengaluru",
+      "date": "2025",
+      "detail": "Competed in a 24-hour national-level hackathon.",
+      "certificateUrl": "/certificates/terraquest-2k25-hackathon.pdf",
+      "order": 3,
+      "visible": true
+    },
+    {
+      "title": "HackMarathon 2K26 — 24-hour National Hackathon",
+      "org": "Nehru College of Art and Science, Coimbatore",
+      "date": "2026",
+      "detail": "Competed in a 24-hour national-level hackathon.",
+      "certificateUrl": "",
+      "order": 4,
+      "visible": true
+    },
+    {
+      "title": "Tech Sparta 2K25 — Technical Event",
+      "org": "Dr. Mahalingam College of Engineering and Technology",
+      "date": "2025",
+      "detail": "Participated in the technical event.",
+      "certificateUrl": "/certificates/tech-sparta-2k25.pdf",
+      "order": 5,
+      "visible": true
+    },
+    {
+      "title": "Futrix-26 — 2nd Prize Blind Coding, 3rd Prize Project Presentation",
+      "org": "Arjun College of Engineering, Coimbatore",
+      "date": "2026",
+      "detail": "Placed 2nd in Blind Coding and 3rd in Project Presentation at the inter-college symposium.",
+      "certificateUrl": "",
+      "order": 6,
+      "visible": true
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "projects": [
+    {
+      "title": "Student Placement Prediction using Machine Learning",
+      "slug": "student-placement-prediction",
+      "summary": "A classification model that estimates a student's campus-placement likelihood from academic and skill indicators.",
+      "description": "TODO: Describe the dataset, the features you engineered, the models you compared, the evaluation metrics, and what you learned. This text drives the /projects/student-placement-prediction detail page.",
+      "tags": [
+        "Machine Learning",
+        "Classification",
+        "Python"
+      ],
+      "techStack": [
+        "Python",
+        "Pandas",
+        "scikit-learn",
+        "Matplotlib"
+      ],
+      "role": "Student Developer",
+      "githubUrl": "https://github.com/Manikandan-777",
+      "liveUrl": "",
+      "image": "",
+      "featured": true,
+      "order": 1,
+      "visible": true
+    },
+    {
+      "title": "Digital Inclusion and Automated Financial Health Assessment Platform",
+      "slug": "financial-health-assessment-platform",
+      "summary": "A platform concept that scores personal financial health and surfaces guidance for underserved users.",
+      "description": "TODO: Describe the problem framing, the assessment logic, the data model, the tech stack, your specific contribution, and the outcome or demo result.",
+      "tags": [
+        "Data Analysis",
+        "FinTech",
+        "Social Impact"
+      ],
+      "techStack": [
+        "Python",
+        "Pandas",
+        "Streamlit"
+      ],
+      "role": "Project Developer",
+      "githubUrl": "https://github.com/Manikandan-777",
+      "liveUrl": "",
+      "image": "",
+      "featured": true,
+      "order": 2,
+      "visible": true
+    },
+    {
+      "title": "Jewellery Price Prediction using Linear Regression",
+      "slug": "jewellery-price-prediction",
+      "summary": "A regression model predicting jewellery prices from weight, material, and market-rate features.",
+      "description": "TODO: Describe the dataset, the features, the regression approach, the R2 / error metrics, and any residual analysis.",
+      "tags": [
+        "Machine Learning",
+        "Regression",
+        "Python"
+      ],
+      "techStack": [
+        "Python",
+        "Pandas",
+        "scikit-learn"
+      ],
+      "role": "Project Developer",
+      "githubUrl": "https://github.com/Manikandan-777",
+      "liveUrl": "",
+      "image": "",
+      "featured": false,
+      "order": 3,
+      "visible": true
+    },
+    {
+      "title": "Boston Housing Price Prediction using Linear Regression",
+      "slug": "boston-housing-price-prediction",
+      "summary": "A classic linear-regression study on the Boston housing dataset, with feature exploration and diagnostics.",
+      "description": "TODO: Describe the EDA, the assumptions you checked, the model performance, and the limitations of the dataset.",
+      "tags": [
+        "Machine Learning",
+        "Regression",
+        "Python"
+      ],
+      "techStack": [
+        "Python",
+        "NumPy",
+        "Pandas",
+        "scikit-learn",
+        "Seaborn"
+      ],
+      "role": "Project Developer",
+      "githubUrl": "https://github.com/Manikandan-777",
+      "liveUrl": "",
+      "image": "",
+      "featured": false,
+      "order": 4,
+      "visible": true
+    },
+    {
+      "title": "Supermarket Product Management System using Python Data Structures",
+      "slug": "supermarket-product-management",
+      "summary": "A console application for supermarket inventory built on core Python data structures, no external database.",
+      "description": "TODO: Describe the data structures you used, the operations supported (add / search / update / bill), the complexity trade-offs, and how you tested it.",
+      "tags": [
+        "Data Structures",
+        "Python",
+        "CLI"
+      ],
+      "techStack": [
+        "Python"
+      ],
+      "role": "Project Developer",
+      "githubUrl": "https://github.com/Manikandan-777",
+      "liveUrl": "",
+      "image": "",
+      "featured": false,
+      "order": 5,
+      "visible": true
+    },
+    {
+      "title": "Buggy Foods — AI-Powered Full Stack Restaurant Website",
+      "slug": "buggy-foods",
+      "summary": "A full-stack restaurant website with an AI-assisted ordering experience, built during a hackathon.",
+      "description": "TODO: Describe the architecture (frontend, backend, database), the AI feature and which model/API powered it, your specific role on the team, and the final demo outcome.",
+      "tags": [
+        "Full Stack",
+        "AI",
+        "Web"
+      ],
+      "techStack": [
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB"
+      ],
+      "role": "Project Developer",
+      "githubUrl": "https://github.com/Manikandan-777",
+      "liveUrl": "",
+      "image": "",
+      "featured": true,
+      "order": 6,
+      "visible": true
+    },
+    {
+      "title": "Retrieval-Augmented Generation (RAG) Question-Answering System",
+      "slug": "rag-question-answering",
+      "summary": "A RAG pipeline that grounds a language model's answers in a document corpus using vector retrieval, so responses cite real source text instead of hallucinating.",
+      "description": "TODO: Describe the document set and how you chunked it, the embedding model and vector store, the retrieval + prompt-assembly step, which LLM generated the answers, how you evaluated answer quality, and what you learned. Update techStack to match what you actually used.",
+      "tags": [
+        "RAG",
+        "NLP",
+        "LLM"
+      ],
+      "techStack": [
+        "Python",
+        "LangChain",
+        "FAISS",
+        "Sentence Transformers"
+      ],
+      "role": "Project Developer",
+      "githubUrl": "https://github.com/Manikandan-777",
+      "liveUrl": "",
+      "image": "",
+      "featured": false,
+      "order": 7,
+      "visible": true
+    },
+    {
+      "title": "Recommendation System using K-Nearest Neighbors",
+      "slug": "knn-recommendation-system",
+      "summary": "An item-based recommender that surfaces similar items by running the KNN algorithm over a user-item rating matrix.",
+      "description": "TODO: Describe the dataset, how you built the rating matrix, the distance metric and value of k, how you handled sparsity, the evaluation approach, and example recommendations.",
+      "tags": [
+        "Recommendation System",
+        "Machine Learning",
+        "KNN"
+      ],
+      "techStack": [
+        "Python",
+        "scikit-learn",
+        "Pandas",
+        "NumPy"
+      ],
+      "role": "Project Developer",
+      "githubUrl": "https://github.com/Manikandan-777",
+      "liveUrl": "",
+      "image": "",
+      "featured": false,
+      "order": 8,
+      "visible": true
+    },
+    {
+      "title": "Collaborative Filtering Recommendation System (Netflix Dataset)",
+      "slug": "netflix-collaborative-filtering",
+      "summary": "A collaborative-filtering recommender that predicts what a viewer will enjoy from the rating patterns of similar users on Netflix-style data.",
+      "description": "TODO: Describe the dataset, user-based vs item-based choice, the similarity measure, how you generated and ranked predictions, the accuracy metric (e.g. RMSE), and the cold-start limitations.",
+      "tags": [
+        "Recommendation System",
+        "Collaborative Filtering",
+        "Machine Learning"
+      ],
+      "techStack": [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "scikit-learn"
+      ],
+      "role": "Project Developer",
+      "githubUrl": "https://github.com/Manikandan-777",
+      "liveUrl": "",
+      "image": "",
+      "featured": false,
+      "order": 9,
+      "visible": true
+    },
+    {
+      "title": "Movie Recommendation System using Weighted Rating",
+      "slug": "movie-recommendation-weighted-rating",
+      "summary": "A popularity-aware movie recommender that ranks titles with the IMDb weighted-rating formula to balance average score against vote count.",
+      "description": "TODO: Describe the dataset, the weighted-rating formula and how you chose the minimum-votes cutoff, any genre or content filtering layered on top, and how the ranked output looks against a naive average-rating baseline.",
+      "tags": [
+        "Recommendation System",
+        "Data Analysis",
+        "Python"
+      ],
+      "techStack": [
+        "Python",
+        "Pandas",
+        "NumPy"
+      ],
+      "role": "Project Developer",
+      "githubUrl": "https://github.com/Manikandan-777",
+      "liveUrl": "",
+      "image": "",
+      "featured": false,
+      "order": 10,
+      "visible": true
+    }
+  ]
+}

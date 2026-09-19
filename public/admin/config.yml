@@ -1,0 +1,235 @@
+# Decap CMS — browser-based editing for the same /content JSON files.
+# The site does NOT depend on this; it's a convenience layer.
+#
+# Local editing:   npx decap-server   (in one terminal)  +  npm run dev
+#                  then open http://localhost:3000/admin  (uses local_backend below)
+# Production:      enable Netlify Identity + Git Gateway, then /admin edits commit
+#                  straight to the repo.
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Lets `npx decap-server` write to your working copy during local development.
+local_backend: true
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  # ------------------------------------------------------------------ profile
+  - name: profile
+    label: "Profile"
+    files:
+      - name: profile
+        label: "Profile"
+        file: "content/profile.json"
+        format: json
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: title, label: Title, widget: string }
+          - { name: tagline, label: Tagline, widget: text }
+          - { name: bio, label: Bio, widget: text }
+          - { name: photo, label: Photo, widget: image, required: false }
+          - { name: location, label: Location, widget: string, required: false }
+          - { name: email, label: Email, widget: string }
+          - { name: phone, label: Phone, widget: string, required: false }
+          - { name: resumeUrl, label: "Résumé URL / path", widget: string, required: false }
+          - { name: availability, label: Availability line, widget: string, required: false }
+
+  # ----------------------------------------------------------------- settings
+  - name: settings
+    label: "Settings"
+    files:
+      - name: settings
+        label: "Site settings"
+        file: "content/settings.json"
+        format: json
+        fields:
+          - { name: siteUrl, label: "Site URL", widget: string }
+          - name: theme
+            label: Theme
+            widget: object
+            fields:
+              - { name: accent, label: "Accent colour", widget: color, enableAlpha: false }
+              - { name: accentContrast, label: "Text on accent", widget: color, enableAlpha: false }
+          - name: defaultMode
+            label: "Default colour mode"
+            widget: select
+            options: ["light", "dark", "system"]
+            default: system
+          - name: contact
+            label: "Contact form"
+            widget: object
+            fields:
+              - { name: provider, label: Provider, widget: select, options: ["web3forms", "formspree"] }
+              - { name: accessKey, label: "Access key / form id", widget: string }
+          - name: sections
+            label: "Sections (order & visibility)"
+            widget: list
+            fields:
+              - name: id
+                label: Section
+                widget: select
+                options: ["about", "skills", "projects", "certificates", "achievements", "contact"]
+              - { name: label, label: "Nav label", widget: string }
+              - { name: order, label: Order, widget: number, value_type: int }
+              - { name: visible, label: Visible, widget: boolean, default: true }
+
+  # ------------------------------------------------------------------- skills
+  - name: skills
+    label: "Skills"
+    files:
+      - name: skills
+        label: "Skill groups"
+        file: "content/skills.json"
+        format: json
+        fields:
+          - name: groups
+            label: Groups
+            widget: list
+            fields:
+              - { name: name, label: "Group name", widget: string }
+              - { name: order, label: Order, widget: number, value_type: int }
+              - { name: visible, label: Visible, widget: boolean, default: true }
+              - name: items
+                label: Items
+                widget: list
+                fields:
+                  - { name: name, label: Skill, widget: string }
+                  - name: level
+                    label: Level
+                    widget: select
+                    required: false
+                    options: ["core", "working", "learning"]
+
+  # --------------------------------------------------------------- experience
+  - name: experience
+    label: "Experience"
+    files:
+      - name: experience
+        label: "Education & roles"
+        file: "content/experience.json"
+        format: json
+        fields:
+          - name: education
+            label: Education
+            widget: list
+            fields:
+              - { name: degree, label: Degree, widget: string }
+              - { name: institution, label: Institution, widget: string }
+              - { name: location, label: Location, widget: string, required: false }
+              - { name: start, label: Start, widget: string, required: false }
+              - { name: end, label: End, widget: string, required: false }
+              - { name: detail, label: Detail, widget: string, required: false }
+              - { name: notes, label: Notes, widget: list, required: false, field: { name: note, label: Note, widget: string } }
+              - { name: order, label: Order, widget: number, value_type: int }
+              - { name: visible, label: Visible, widget: boolean, default: true }
+          - name: roles
+            label: Roles
+            widget: list
+            required: false
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: organisation, label: Organisation, widget: string }
+              - { name: location, label: Location, widget: string, required: false }
+              - { name: start, label: Start, widget: string, required: false }
+              - { name: end, label: End, widget: string, required: false }
+              - { name: detail, label: Detail, widget: string, required: false }
+              - { name: notes, label: Notes, widget: list, required: false, field: { name: note, label: Note, widget: string } }
+              - { name: order, label: Order, widget: number, value_type: int }
+              - { name: visible, label: Visible, widget: boolean, default: true }
+
+  # ------------------------------------------------------------------ projects
+  - name: projects
+    label: "Projects"
+    files:
+      - name: projects
+        label: "Projects"
+        file: "content/projects.json"
+        format: json
+        fields:
+          - name: projects
+            label: Projects
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: slug, label: "Slug (URL)", widget: string, pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "lowercase words separated by hyphens"] }
+              - { name: summary, label: "Card summary", widget: text }
+              - { name: description, label: "Detail write-up", widget: text, required: false }
+              - { name: tags, label: Tags, widget: list, required: false, field: { name: tag, label: Tag, widget: string } }
+              - { name: techStack, label: "Tech stack", widget: list, required: false, field: { name: tech, label: Tech, widget: string } }
+              - { name: role, label: Role, widget: string, required: false }
+              - { name: githubUrl, label: "GitHub URL", widget: string, required: false }
+              - { name: liveUrl, label: "Live URL", widget: string, required: false }
+              - { name: image, label: Image, widget: image, required: false }
+              - { name: featured, label: Featured, widget: boolean, default: false }
+              - { name: order, label: Order, widget: number, value_type: int }
+              - { name: visible, label: Visible, widget: boolean, default: true }
+
+  # -------------------------------------------------------------- certificates
+  - name: certificates
+    label: "Certificates"
+    files:
+      - name: certificates
+        label: "Certificates"
+        file: "content/certificates.json"
+        format: json
+        fields:
+          - name: certificates
+            label: Certificates
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: issuer, label: Issuer, widget: string }
+              - { name: date, label: Date, widget: string, required: false }
+              - { name: credentialUrl, label: "Credential URL", widget: string, required: false }
+              - { name: category, label: Category, widget: string, hint: "e.g. AI/ML, Design, Business, Web, Marketing" }
+              - { name: order, label: Order, widget: number, value_type: int }
+              - { name: visible, label: Visible, widget: boolean, default: true }
+
+  # -------------------------------------------------------------- achievements
+  - name: achievements
+    label: "Achievements"
+    files:
+      - name: achievements
+        label: "Achievements"
+        file: "content/achievements.json"
+        format: json
+        fields:
+          - name: achievements
+            label: Achievements
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: org, label: Organisation, widget: string, required: false }
+              - { name: date, label: Date, widget: string, required: false }
+              - { name: detail, label: Detail, widget: text, required: false }
+              - { name: order, label: Order, widget: number, value_type: int }
+              - { name: visible, label: Visible, widget: boolean, default: true }
+
+  # -------------------------------------------------------------------- social
+  - name: social
+    label: "Social links"
+    files:
+      - name: social
+        label: "Social links"
+        file: "content/social.json"
+        format: json
+        fields:
+          - name: social
+            label: Links
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: url, label: URL, widget: string }
+              - name: icon
+                label: Icon
+                widget: select
+                options: ["github", "linkedin", "leetcode", "code", "globe", "portfolio", "mail", "twitter", "instagram", "youtube", "link"]
+              - { name: order, label: Order, widget: number, value_type: int }
+              - { name: visible, label: Visible, widget: boolean, default: true }

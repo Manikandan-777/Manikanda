@@ -1,0 +1,20 @@
+{
+  "siteUrl": "https://manikandan-aids.netlify.app",
+  "theme": {
+    "accent": "#12a150",
+    "accentContrast": "#04160b"
+  },
+  "defaultMode": "light",
+  "contact": {
+    "provider": "web3forms",
+    "accessKey": "REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY"
+  },
+  "sections": [
+    { "id": "about", "label": "About", "order": 1, "visible": true },
+    { "id": "skills", "label": "Skills", "order": 2, "visible": true },
+    { "id": "projects", "label": "Projects", "order": 3, "visible": true },
+    { "id": "certificates", "label": "Certificates", "order": 4, "visible": true },
+    { "id": "achievements", "label": "Achievements", "order": 5, "visible": true },
+    { "id": "contact", "label": "Contact", "order": 6, "visible": true }
+  ]
+}

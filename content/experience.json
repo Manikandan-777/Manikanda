@@ -1,0 +1,27 @@
+{
+  "education": [
+    {
+      "degree": "B.Tech, Artificial Intelligence and Data Science",
+      "institution": "Dr. Mahalingam College of Engineering and Technology",
+      "location": "Pollachi, Tamil Nadu",
+      "start": "Sep 2024",
+      "end": "May 2028",
+      "detail": "CGPA 8.34 / 10",
+      "notes": ["Volunteer, Mutamizh Club"],
+      "order": 1,
+      "visible": true
+    },
+    {
+      "degree": "Higher Secondary Certificate (Class XII)",
+      "institution": "R M Ps Ramiah Nadar Higher Secondary School",
+      "location": "Athipatti, Madurai",
+      "start": "",
+      "end": "Mar 2024",
+      "detail": "Class 12: 84.2% · Class 10: 84.8%",
+      "notes": [],
+      "order": 2,
+      "visible": true
+    }
+  ],
+  "roles": []
+}

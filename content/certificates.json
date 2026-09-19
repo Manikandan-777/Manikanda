@@ -1,0 +1,134 @@
+{
+  "certificates": [
+    {
+      "title": "Business Fundamentals for Entrepreneurs",
+      "issuer": "NPTEL · IIT Bombay",
+      "date": "Jan–Apr 2025",
+      "credentialUrl": "/certificates/business-fundamentals-entrepreneurs.pdf",
+      "category": "Business",
+      "logo": "/logos/nptel.svg",
+      "order": 1,
+      "visible": true
+    },
+    {
+      "title": "Management Information System",
+      "issuer": "NPTEL · IIT Kharagpur",
+      "date": "Jul–Oct 2025",
+      "credentialUrl": "/certificates/management-information-system.pdf",
+      "category": "Business",
+      "logo": "/logos/nptel.svg",
+      "order": 2,
+      "visible": true
+    },
+    {
+      "title": "Introduction to Generative AI",
+      "issuer": "Google Cloud · Coursera",
+      "date": "Jul 2025",
+      "credentialUrl": "/certificates/intro-generative-ai.pdf",
+      "category": "AI/ML",
+      "logo": "/logos/google-cloud.svg",
+      "order": 3,
+      "visible": true
+    },
+    {
+      "title": "Introduction to Large Language Models",
+      "issuer": "Google Cloud · Coursera",
+      "date": "Jul 2025",
+      "credentialUrl": "/certificates/intro-large-language-models.pdf",
+      "category": "AI/ML",
+      "logo": "/logos/google-cloud.svg",
+      "order": 4,
+      "visible": true
+    },
+    {
+      "title": "Fundamentals of UI/UX Design",
+      "issuer": "Microsoft · Coursera",
+      "date": "May 2025",
+      "credentialUrl": "/certificates/uiux-fundamentals-microsoft.pdf",
+      "category": "Design",
+      "logo": "/logos/microsoft.svg",
+      "order": 5,
+      "visible": true
+    },
+    {
+      "title": "UI/UX Design for Beginners",
+      "issuer": "Juno School",
+      "date": "Apr 2025",
+      "credentialUrl": "/certificates/uiux-beginners-juno.pdf",
+      "category": "Design",
+      "logo": "/logos/juno-school.svg",
+      "order": 6,
+      "visible": true
+    },
+    {
+      "title": "Python for Data Science",
+      "issuer": "Reliance Foundation Skilling Academy",
+      "date": "Sep 2025",
+      "credentialUrl": "/certificates/python-for-data-science.pdf",
+      "category": "AI/ML",
+      "logo": "/logos/reliance-foundation-skilling-academy.svg",
+      "order": 7,
+      "visible": true
+    },
+    {
+      "title": "Twitter, LinkedIn and YouTube Marketing",
+      "issuer": "Digital Marketing Institute",
+      "date": "May 2025",
+      "credentialUrl": "/certificates/digital-marketing.pdf",
+      "category": "Marketing",
+      "logo": "/logos/digital-marketing-institute.svg",
+      "order": 8,
+      "visible": true
+    },
+    {
+      "title": "How to Create Video for Online Courses",
+      "issuer": "University of Edinburgh",
+      "date": "May 2025",
+      "credentialUrl": "/certificates/video-for-online-courses.pdf",
+      "category": "Marketing",
+      "logo": "/logos/university-of-edinburgh.svg",
+      "order": 9,
+      "visible": true
+    },
+    {
+      "title": "Frontend Web Development using React and Lovable AI",
+      "issuer": "Smarted Innovations",
+      "date": "Jun 2025",
+      "credentialUrl": "/certificates/frontend-react-bootcamp.pdf",
+      "category": "Web",
+      "logo": "/logos/smarted-innovations.svg",
+      "order": 10,
+      "visible": true
+    },
+    {
+      "title": "UX Design Workshop",
+      "issuer": "GUVI · HCL",
+      "date": "May 2025",
+      "credentialUrl": "/certificates/ux-design-workshop-guvi.pdf",
+      "category": "Design",
+      "logo": "/logos/guvi.svg",
+      "order": 11,
+      "visible": true
+    },
+    {
+      "title": "Job Readiness through Web Technologies",
+      "issuer": "Study Comrade",
+      "date": "May 2025",
+      "credentialUrl": "/certificates/job-readiness-web.pdf",
+      "category": "Web",
+      "logo": "/logos/study-comrade.svg",
+      "order": 12,
+      "visible": true
+    },
+    {
+      "title": "Deep Learning for Developers",
+      "issuer": "Infosys Springboard",
+      "date": "Jul 2026",
+      "credentialUrl": "/certificates/deep-learning-for-developers.pdf",
+      "category": "AI/ML",
+      "logo": "/logos/infosys-springboard.svg",
+      "order": 13,
+      "visible": true
+    }
+  ]
+}
