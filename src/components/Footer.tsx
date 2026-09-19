@@ -8,8 +8,7 @@ export function Footer() {
         <div>
           <p className="font-display text-lg text-fg">{profile.name}</p>
           <p className="text-sm text-muted">
-            © {new Date().getFullYear()} · Built with Next.js. Content lives in{" "}
-            <code className="text-faint">/content</code>.
+            © {new Date().getFullYear()} Manikandan P. All rights reserved.
           </p>
         </div>
         <SocialLinks items={socials} />
